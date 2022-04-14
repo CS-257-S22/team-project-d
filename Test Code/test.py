@@ -34,7 +34,7 @@ class TestBrands(unittest.TestCase):
         self.assertEqual(test_ic1_reviews_list[0].rating, 3)
         self.assertEqual(test_ic1_reviews_list[0].date, '2017-04-15')
 
-    def test2_get_reviews(self):
+    def test2_get_reviews_empty_columns(self):
         test_ic2 = ic.IceCream('dummy_reviews.csv', '5_hd', 'Caramel Soft Dipped Ice Cream Bar', 'random description', 4.9, 208, 'some ingredients')
         test_ic2_reviews_list = test_ic2.reviews
         self.assertEqual(len(test_ic2_reviews_list), 2)
@@ -45,7 +45,6 @@ class TestBrands(unittest.TestCase):
 
     # tests for brand search
     # test for is_valid_brand_input(string input) helper method
-    '''
     def is_valid_brand_input_success_bj(self):
         bj_valid_names = ["bj", "ben and jerry's", "b&j", "ben and jerrys", "BJ", "Ben and Jerry's", "B&J", "Ben and Jerrys"]
         for name in bj_valid_names:
@@ -76,7 +75,6 @@ class TestBrands(unittest.TestCase):
     
     # tests for rating search
     # test for is_valid_rating_input
-    '''
 
 if __name__ == '__main__':
     unittest.main()
