@@ -1,19 +1,18 @@
 '''
-Author@ Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, and Charlie Ney
-Course@ CS 257, Software Design, Prof Anya Vostinar
+    File@ test.py
+    Author@ Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, and Charlie Ney
+    Course@ CS 257, Software Design, Prof Anya Vostinar
 
-test.py
+    This program conatins all the test cases required to 
+    ensure the two functionalities supported by ice_cream.py:
 
-This program conatins all the test cases required to 
-ensure the two functionalities supported by ice_cream.py:
+    1) Search by brands
+    2) Search by ratings
 
-1) Search by brands
-2) Search by ratings
-
-This program uses dummy datasets "dummy_products.cvs" and "dummy_reviews.cvs", 
-which are subsets of actual datasets used for this project. "dummy_products.cvs"
-conatins two ice creams from the four brands, and "dummy_reviews.cvs" contains
-the corresponding reviews for these 8 ice creams.
+    This program uses dummy datasets "dummy_products.cvs" and "dummy_reviews.cvs", 
+    which are subsets of actual datasets used for this project. "dummy_products.cvs"
+    conatins two ice creams from the four brands, and "dummy_reviews.cvs" contains
+    the corresponding reviews for these 8 ice creams.
 '''
 
 import unittest
@@ -21,14 +20,15 @@ import ice_cream as ic
 
 class TestBrands(unittest.TestCase):
     def setUp(self):
-        self.data_source = ic.IceCreamDataSource("dummy_products.csv","dummy_reviews.csv")
+        self.data_source = ic.IceCreamDataSource("dummy_products.csv")
 
-    
     def tearDown(self):
         pass
 
     # tests for brand search
-    # test for is_valid_brand_input(string input) help method
+    # test for get_reviews(string file_name)
+
+    # test for is_valid_brand_input(string input) helper method
     def is_valid_brand_input_success_bj(self):
         bj_valid_names = ["bj", "ben and jerry's", "b&j", "ben and jerrys", "BJ", "Ben and Jerry's", "B&J", "Ben and Jerrys"]
         for name in bj_valid_names:
