@@ -21,17 +21,44 @@ import ice_cream as ic
 
 class TestBrands(unittest.TestCase):
     def setUp(self):
-        self.products_data = ic.icecream_data_source("dummy_products.csv")
-        self.reviews_data = ic.icecream_data_source("dummy_products.csv")
+        self.data_source = ic.IceCreamDataSource("dummy_products.csv","dummy_reviews.csv")
+
     
     def tearDown(self):
         pass
 
-    def test_count_eq(self):
-        self.assertEqual(len(self.expected), len(self.result))
-        
-    def test_list_eq(self):
-        self.assertListEqual(self.expected, self.result)
+    # tests for brand search
+    # test for is_valid_brand_input(string input) help method
+    def is_valid_brand_input_success_bj(self):
+        bj_valid_names = ["bj", "ben and jerry's", "b&j", "ben and jerrys", "BJ", "Ben and Jerry's", "B&J", "Ben and Jerrys"]
+        for name in bj_valid_names:
+            self.assertTrue(ic.is_valid_brand_input(name), True)
+
+    # test for is_valid_brand_input(string input) help method
+    def is_valid_brand_input_success_hd(self):
+        hd_valid_names = ["hd", "haagen-dazs", "haagen dazs", "Haagen Dazs", "Haagen-Dazs"]
+        for name in hd_valid_names:
+            self.assertTrue(ic.is_valid_brand_input(name), True)
+
+    # test for is_valid_brand_input(string input) help method
+    def is_valid_brand_input_success_breyers(self):
+        breyers_valid_names = ["breyers", "Breyers"]
+        for name in breyers_valid_names:
+            self.assertTrue(ic.is_valid_brand_input(name), True)
+
+    # test for is_valid_brand_input(string input) help method
+    def is_valid_brand_input_success_talenti(self):
+        talenti_valid_names = ["talenti", "Talenti"]
+        for name in talenti_valid_names:
+            self.assertTrue(ic.is_valid_brand_input(name), True)
+
+    def is_invalid_brand_input(self):
+        invalid_names = ["1235", " ", "", "Bj", "#$%^&*)(*&", "talen"]
+        for name in invalid_names:
+            self.assertTrue(ic.is_invalid_brand_input(name), True)
+    
+    # tests for rating search
+    # test for is_valid_rating_input
 
 if __name__ == '__main__':
-      unittest.main()
+    unittest.main()
