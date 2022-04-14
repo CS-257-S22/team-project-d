@@ -16,7 +16,7 @@ class IceCream:
         self.avd_rating = avg_rating
         self.rating_count = rating_count
         self.ingredients = ingredients
-        self.reveiws = self.get_reviews(reviews_file_name)
+        self.reviews = self.get_reviews(reviews_file_name)
 
     '''
         Returns a list of reviews for this ice cream. Read the file named 
@@ -34,7 +34,24 @@ class IceCream:
 
         for line in reader:
             if line[1] == self.brand_key:
-                review = Review(line[4], line[8], line[3])
+                # rating entry
+                review_rating = line[4]
+                if review_rating == '':
+                    review_rating = -1
+                else:
+                    review_rating = int(line[4])
+
+                # comment entry
+                review_comment = line[8]
+                if line[8] == '':
+                    review_comment = None
+
+                # date entry
+                review_date = line[3]
+                if line[3] == '':
+                    review_date = None
+        
+                review = Review(review_rating, review_comment, review_date)
                 reviews_list.append(review)
         
         reviews_file.close()
@@ -42,14 +59,14 @@ class IceCream:
         return reviews_list
 
 class Review:
-    def __init__(self, rating=None, comment='', date=None):
-        self.rating = rating
+    def __init__(self, rating=None, comment='', date=''):
+        self.rating = int(rating)
         self.comment = comment
         self.date = date
 
 class DataSource:
     def __init__(self, products_file_name):
-        #First, we need to make a nest list using products_file_name and IceCream class
+        #First, we need to make a nested list using products_file_name and IceCream class
         print('Not Yet Implemeted')
 
     #Brand Search

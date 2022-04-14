@@ -20,15 +20,32 @@ import ice_cream as ic
 
 class TestBrands(unittest.TestCase):
     def setUp(self):
-        self.data_source = ic.IceCreamDataSource("dummy_products.csv")
+        self.data_source = ic.DataSource("dummy_products.csv")
 
     def tearDown(self):
         pass
 
-    # tests for brand search
-    # test for get_reviews(string file_name)
+    # test for get_reviews(review_file_name) in IceCream class
+    def test1_get_reviews(self):
+        test_ic1 = ic.IceCream('dummy_reviews.csv', '0_bj', 'Salted Caramel Core', 'random description', 3, 208, 'ingredients')
+        test_ic1_reviews_list = test_ic1.reviews
+        self.assertEqual(len(test_ic1_reviews_list), 2)
+        self.assertIsInstance(test_ic1_reviews_list[0], ic.Review)
+        self.assertEqual(test_ic1_reviews_list[0].rating, 3)
+        self.assertEqual(test_ic1_reviews_list[0].date, '2017-04-15')
 
+    def test2_get_reviews(self):
+        test_ic2 = ic.IceCream('dummy_reviews.csv', '5_hd', 'Caramel Soft Dipped Ice Cream Bar', 'random description', 4.9, 208, 'some ingredients')
+        test_ic2_reviews_list = test_ic2.reviews
+        self.assertEqual(len(test_ic2_reviews_list), 2)
+        self.assertIsInstance(test_ic2_reviews_list[1], ic.Review)
+        self.assertEqual(test_ic2_reviews_list[1].rating, -1)
+        self.assertEqual(test_ic2_reviews_list[1].comment, None)
+        self.assertEqual(test_ic2_reviews_list[1].date, None)
+
+    # tests for brand search
     # test for is_valid_brand_input(string input) helper method
+    '''
     def is_valid_brand_input_success_bj(self):
         bj_valid_names = ["bj", "ben and jerry's", "b&j", "ben and jerrys", "BJ", "Ben and Jerry's", "B&J", "Ben and Jerrys"]
         for name in bj_valid_names:
@@ -59,6 +76,7 @@ class TestBrands(unittest.TestCase):
     
     # tests for rating search
     # test for is_valid_rating_input
+    '''
 
 if __name__ == '__main__':
     unittest.main()
