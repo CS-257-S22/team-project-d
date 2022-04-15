@@ -20,7 +20,7 @@ import ice_cream as ic
 
 class TestBrands(unittest.TestCase):
     def setUp(self):
-        self.data_source = ic.DataSource("dummy_products.csv")
+        self.data_source = ic.DataSource("dummy_products.csv", "dummy_reviews.csv")
 
     def tearDown(self):
         pass

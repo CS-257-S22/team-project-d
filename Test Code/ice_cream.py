@@ -25,8 +25,7 @@ class IceCream:
         contains its attributes.
     '''
     def get_reviews(self, reviews_file_name):
-        path_name = '../Data/' + reviews_file_name
-        file_path = path.relpath(path_name)
+        file_path = path.relpath('../Data/' + reviews_file_name)
         reviews_file = open(file_path, 'r')
         reader = csv.reader(reviews_file)
         next(reader)
@@ -34,19 +33,15 @@ class IceCream:
 
         for line in reader:
             if line[1] == self.brand_key:
-                # rating entry
-                review_rating = line[4]
-                if review_rating == '':
-                    review_rating = -1
-                else:
+                # rating 
+                review_rating = -1
+                if line[4] != '':
                     review_rating = int(line[4])
-
-                # comment entry
+                # comment 
                 review_comment = line[8]
                 if line[8] == '':
                     review_comment = None
-
-                # date entry
+                # date
                 review_date = line[3]
                 if line[3] == '':
                     review_date = None
@@ -65,10 +60,49 @@ class Review:
         self.date = date
 
 class DataSource:
-    def __init__(self, products_file_name):
-        #First, we need to make a nested list using products_file_name and IceCream class
-        print('Not Yet Implemeted')
-
+    def __init__(self, products_file_name, reviews_file_name):
+        file_path = path.relpath('../Data/' + products_file_name)
+        reviews_file = open(file_path, 'r')
+        reader = csv.reader(reviews_file)
+        next(reader)
+        ice_cream_data_source = [[],[],[],[]] # nested list containing ice creams, sorted by barnds (as a list)
+    
+        for line in reader:
+            # brand key
+            ice_cream_key = line[1]
+            # name
+            ice_cream_name = line[2]
+            if line[2] == '':
+                ice_cream_name = None
+            # description
+            ice_cream_description = line[3]
+            if line[4] == '':
+                ice_cream_description = None
+            # average rating
+            ice_cream_avg_rating = -1
+            if line[5] != '':
+                ice_cream_avg_rating = float(line[5])
+            # rating count
+            ice_cream_ratings_count = -1
+            if line[6] != '':
+                ice_cream_ratings_count = float(line[6])
+            # ingredients
+            ice_cream_ingredients = line[7]
+            if line[7] == '':
+                ice_cream_ingredients = None
+            
+            # make an IceCream instance and append to the list
+            ice_cream = IceCream(reviews_file_name, ice_cream_key, ice_cream_name, ice_cream_description, 
+                                ice_cream_avg_rating, ice_cream_ratings_count, ice_cream_ingredients)
+            if line[1][-2:] == 'bj':
+                ice_cream_data_source[0].append(ice_cream)
+            elif line[1][-2:] == 'hd':
+                ice_cream_data_source[1].append(ice_cream)
+            elif line[1][-2:] == 'ti':
+                ice_cream_data_source[2].append(ice_cream)
+            else:
+                ice_cream_data_source[3].append(ice_cream)
+    
     #Brand Search
     def is_valid_brand_input(input):
         #True if input is valid
