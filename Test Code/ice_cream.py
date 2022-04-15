@@ -57,7 +57,7 @@ class DataSource:
         reviews_file = open(file_path, 'r')
         reader = csv.reader(reviews_file)
         next(reader)
-        ice_cream_data_source = [[],[],[],[]] # nested list containing ice creams, sorted by barnds (as a list)
+        self.ice_cream_data_source = [[],[],[],[]] # nested list containing ice creams, sorted by barnds (as a list)
     
         for line in reader:
             # brand key
@@ -71,17 +71,17 @@ class DataSource:
             if line[6] != '':
                 ice_cream_ratings_count = float(line[6])
             
-            # make an IceCream instance and append to the list
+            # make an IceCream instance and append it to the list
             ice_cream = IceCream(reviews_file_name, ice_cream_key, line[2], line[4], 
                                 ice_cream_avg_rating, ice_cream_ratings_count, line[7])
             if ice_cream_key[-2:] == 'bj':
-                ice_cream_data_source[0].append(ice_cream)
+                self.ice_cream_data_source[0].append(ice_cream)
             elif ice_cream_key[-2:] == 'hd':
-                ice_cream_data_source[1].append(ice_cream)
+                self.ice_cream_data_source[1].append(ice_cream)
             elif ice_cream_key[-2:] == 'ti':
-                ice_cream_data_source[2].append(ice_cream)
+                self.ice_cream_data_source[2].append(ice_cream)
             else:
-                ice_cream_data_source[3].append(ice_cream)
+                self.ice_cream_data_source[3].append(ice_cream)
     
     #Brand Search
     def is_valid_brand_input(input):
@@ -109,7 +109,11 @@ class DataSource:
         print('Not Yet Implemeted')
 
 def main():
-    print('Not Yet Implemeted')
+    datasource = DataSource("dummy_products.csv", "dummy_reviews.csv")
+    for item in datasource.ice_cream_data_source:
+        print('--------------------------------------')
+        for ic in item:
+            print(ic.name + ' with', len(ic.reviews), 'reviews')
 
 if __name__=='__main__':
     main()
