@@ -40,8 +40,8 @@ class TestBrands(unittest.TestCase):
         self.assertEqual(len(test_ic2_reviews_list), 2)
         self.assertIsInstance(test_ic2_reviews_list[1], ic.Review)
         self.assertEqual(test_ic2_reviews_list[1].rating, -1)
-        self.assertEqual(test_ic2_reviews_list[1].comment, None)
-        self.assertEqual(test_ic2_reviews_list[1].date, None)
+        self.assertEqual(test_ic2_reviews_list[1].comment, '')
+        self.assertEqual(test_ic2_reviews_list[1].date, '')
 
     # tests for brand search
     # test for is_valid_brand_input(string input) helper method

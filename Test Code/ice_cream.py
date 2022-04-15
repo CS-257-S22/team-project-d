@@ -33,20 +33,12 @@ class IceCream:
 
         for line in reader:
             if line[1] == self.brand_key:
-                # rating 
+                # rating
                 review_rating = -1
                 if line[4] != '':
                     review_rating = int(line[4])
-                # comment 
-                review_comment = line[8]
-                if line[8] == '':
-                    review_comment = None
-                # date
-                review_date = line[3]
-                if line[3] == '':
-                    review_date = None
-        
-                review = Review(review_rating, review_comment, review_date)
+
+                review = Review(review_rating, line[8], line[3])
                 reviews_list.append(review)
         
         reviews_file.close()
@@ -70,14 +62,6 @@ class DataSource:
         for line in reader:
             # brand key
             ice_cream_key = line[1]
-            # name
-            ice_cream_name = line[2]
-            if line[2] == '':
-                ice_cream_name = None
-            # description
-            ice_cream_description = line[3]
-            if line[4] == '':
-                ice_cream_description = None
             # average rating
             ice_cream_avg_rating = -1
             if line[5] != '':
@@ -86,19 +70,15 @@ class DataSource:
             ice_cream_ratings_count = -1
             if line[6] != '':
                 ice_cream_ratings_count = float(line[6])
-            # ingredients
-            ice_cream_ingredients = line[7]
-            if line[7] == '':
-                ice_cream_ingredients = None
             
             # make an IceCream instance and append to the list
-            ice_cream = IceCream(reviews_file_name, ice_cream_key, ice_cream_name, ice_cream_description, 
-                                ice_cream_avg_rating, ice_cream_ratings_count, ice_cream_ingredients)
-            if line[1][-2:] == 'bj':
+            ice_cream = IceCream(reviews_file_name, ice_cream_key, line[2], line[4], 
+                                ice_cream_avg_rating, ice_cream_ratings_count, line[7])
+            if ice_cream_key[-2:] == 'bj':
                 ice_cream_data_source[0].append(ice_cream)
-            elif line[1][-2:] == 'hd':
+            elif ice_cream_key[-2:] == 'hd':
                 ice_cream_data_source[1].append(ice_cream)
-            elif line[1][-2:] == 'ti':
+            elif ice_cream_key[-2:] == 'ti':
                 ice_cream_data_source[2].append(ice_cream)
             else:
                 ice_cream_data_source[3].append(ice_cream)
