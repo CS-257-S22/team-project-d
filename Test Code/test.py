@@ -48,30 +48,30 @@ class TestBrands(unittest.TestCase):
     def is_valid_brand_input_success_bj(self):
         bj_valid_names = ["bj", "ben and jerry's", "b&j", "ben and jerrys", "BJ", "Ben and Jerry's", "B&J", "Ben and Jerrys"]
         for name in bj_valid_names:
-            self.assertTrue(ic.is_valid_brand_input(name), True)
+            self.assertEqual(self.data_source.is_valid_brand_input(name), 'bj')
 
     # test for is_valid_brand_input(string input) help method
     def is_valid_brand_input_success_hd(self):
         hd_valid_names = ["hd", "haagen-dazs", "haagen dazs", "Haagen Dazs", "Haagen-Dazs"]
         for name in hd_valid_names:
-            self.assertTrue(ic.is_valid_brand_input(name), True)
+            self.assertEqual(self.data_source.is_valid_brand_input(name), 'hd')
 
     # test for is_valid_brand_input(string input) help method
     def is_valid_brand_input_success_breyers(self):
         breyers_valid_names = ["breyers", "Breyers"]
         for name in breyers_valid_names:
-            self.assertTrue(ic.is_valid_brand_input(name), True)
+            self.assertEqual(self.data_source.is_valid_brand_input(name), 'breyers')
 
     # test for is_valid_brand_input(string input) help method
     def is_valid_brand_input_success_talenti(self):
         talenti_valid_names = ["talenti", "Talenti"]
         for name in talenti_valid_names:
-            self.assertTrue(ic.is_valid_brand_input(name), True)
+            self.assertEqual(self.data_source.is_valid_brand_input(name), 'talenti')
 
     def is_invalid_brand_input(self):
         invalid_names = ["1235", " ", "", "Bj", "#$%^&*)(*&", "talen"]
         for name in invalid_names:
-            self.assertTrue(ic.is_invalid_brand_input(name), True)
+            self.assertTrue(self.data_source.is_valid_brand_input(name), None)
     
     # tests for rating search
     # test for is_valid_rating_input
