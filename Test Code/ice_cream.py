@@ -4,8 +4,11 @@
     Course@ CS 257, Software Design, Prof Anya Vostinar
 """
 
+import sys
 import csv
-from os import path
+from os import path, system
+from functools import reduce
+from operator import attrgetter
 
 
 class IceCream:
@@ -158,7 +161,6 @@ class DataSource:
 
         if rating == -1:
             return result
-        
         for brand in self.ice_cream_data_source:
             for ic in brand:
                 if ic.avg_rating >= rating:
@@ -174,21 +176,76 @@ class DataSource:
     def search_by_ingredients(self, input):
         print("Not Yet Implemeted")
 
-    # Sort by a specified field of IceCream and output top 10
-    def sort_top_10(self):
-        print("Not Yet Implemeted")
+    '''
+        Returns the list of top N=top_num ice creams sorted by their avg_ratings
+    '''
+    def sort_by_ratings(self, top_num):
+        single_list = reduce(lambda x, y: x+y, self.ice_cream_data_source)
+        try:
+            top_num = int(top_num)
+            if top_num < 0:
+                print("ERROR: input out of range")
+                return []
+        except ValueError:
+            print("ERROR: non-numeric input")
+            return []
+
+        result = sorted(single_list, key=attrgetter('avg_rating'), reverse=True)
+        if len(single_list) >= top_num:
+            result = result[0: top_num]
+
+        return result
+        
+    '''
+        Help function which provides descriptions and examples of functions
+    '''
+    def help(self):
+        print("--------------------------------------------------------------------------------------")
+        print("Functions:")
+        print("\t-b(brand name")
+        print("\tDescription: Use this function to search for a specific ice cream using its flavor name.")
+        print()
+        print("\t-r(rating)")
+        print("\tDescription: Use this function to search for ice cream flavors that have a specified rating or higher.")
+        print()
+        print("\t-s(number of ice creams)")
+        print("\t Description: Use this function to return of list of x ice creams with the highest reviews.")
+        print("--------------------------------------------------------------------------------------")
+
+'''
+    Displays the resulting list's name, brand key, srats, and review count. We are omitting the 
+    "description" and "ingredients" columns for simplicity, but we will still use these 
+    information in the final product. 
+'''
+def display_result(list):
+    for ic in list:
+        print(ic.name, '|', ic.brand_key, '|', ic.avg_rating, 'stars |', ic.rating_count, "reviews")
 
 def main():
-    datasource = DataSource("dummy_products.csv", "dummy_reviews.csv")
-    print("--------------------------------------------")
-    result1 = datasource.search_by_brands("talenti")
-    for ic in result1:
-        print(ic.brand_key, "|", ic.name, "|", len(ic.reviews))
-    print("--------------------------------------------")
-    result2 = datasource.search_by_ratings("764rueiurewgriu")
-    for ic in result2:
-        print(ic.brand_key, "|", ic.name, "|", ic.avg_rating, "|",len(ic.reviews))
-    print("--------------------------------------------")
+    system("clear")
+    if len(sys.argv) != 3:
+        if len(sys.argv) == 1:
+            # We're using simple one character functions because the end result will be cllicking on a 
+            # button which won't involve the command line at all
+            print("ERROR: No function entered, examples of functions include [-b], [-r], and [-s].")
+        elif len(sys.argv) == 2:
+            print("ERROR: No argument entered. Please give an argument to use for the method.")
+        elif len(sys.argv) > 3:
+            print("ERROR: Too many arguments entered.")
+        print("Please refer to the help command [-help] for additional information")
+        exit()
+    print("Processing...")
+    data_source = DataSource("products.csv", "reviews.csv")
+    system("clear")
+    if sys.argv[1] == "-b":
+        display_result(data_source.search_by_brands(sys.argv[2]))
+    elif sys.argv[1] == "-r":
+        display_result(data_source.search_by_ratings(sys.argv[2]))
+    elif sys.argv[1] == "-s":
+        display_result(data_source.sort_by_ratings(sys.argv[2]))
+    elif sys.argv[1] == "-help": 
+        help()
+    
 
 if __name__=="__main__":
     main()

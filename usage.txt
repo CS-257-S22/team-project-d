@@ -1,13 +1,14 @@
 ﻿1. Search by brands
-   1. Brand name column is important
-   2. python3 ice_cream.py -b “bj” or --brand_search “bj”
-      1. The function will be called brand_search and will take a string variable which will be one of 4 strings used for the companies in the dataset and returns the ice creams made by that company.
-2. Search by flavor name
-   1. Flavor name column is important
-   2. python3 ice_cream.py -f “Bourbon Pecan Pie” or --flavor_search “Bourbon Pecan Pie”
-      1. This function will be called flavor_search, which will take a string variable that matches a flavor and returns the description and ingredients for that flavor.
-3. Sort by ratings (backup)
-   1. Ratings column is important
-4. Recommend flavors based on existing ratings (backup)
-   1. Flavor name column is important
-   2. Ratings column is important
+   1. Primarily uses Brand name column of the database
+   2. python3 ice_cream.py -b “bj”
+      1. The function will be called search_by_brands. It takes a string variable which will be one of 4 strings used for the companies in the dataset and returns a list of the ice creams made by that company.
+
+2. Search by ratings
+   1. Primarily uses average rating column of products.csv.
+   2. python3 ice_cream.py -r "3"
+      1. The function will be called search_by_ratings. It takes a float from 0 to 5 and returns a list of ice creams with averages ratings that are above or equal to the inputted float.
+
+3. Sort by ratings
+   1. Primarily uses average rating column of products.csv.
+   2. python3 ice_cream.py -s "5"
+      1. The function will be called sort_by_ratings. It takes an integer and returns a list of top "input" numbers of ice creams with the highest ratings.
