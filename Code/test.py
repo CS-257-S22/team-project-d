@@ -169,56 +169,67 @@ class TestBrands(unittest.TestCase):
         invalid_result = self.data_source.search_by_brands("invalid")
         self.assertEqual(invalid_result, [])
 
-    # tests for rating sort  
+    # tests for rating search  
     def test_is_valid_rating(self):
         """
-            test valid rating inputs 
+            test valid rating inputs (typical/unit)
         """ 
-        valid_ratings = ["0", "1", "2", 3, 4, 5, 0.4, "3.99999999", 00000.1]
+        valid_ratings = ["0", "1", "2", "3", "4", "5", "0.1", "1.5", "3.785", "4.9999", 0,\
+                        1, 2, 3, 4, 5, 3.5, 4.5]
         for rating in valid_ratings:
-            self.assertEqual(self.data_source.is_valid_rating_input(rating), float(rating))
+            result = self.data_source.is_valid_rating_input(rating)
+            self.assertIsInstance(result, float)
+            self.assertEqual(result, float(rating))
 
     def test_is_invalid_rating(self):
         """
-            test invalid rating inputs    
+            test invalid rating inputs (edge/unit)
         """
-        invalid_ratings = [-3, 100, "sdlkf"]
+        invalid_ratings = [-3, -1, 5.1, 6, 100, "non-numeric string"]
         for rating in invalid_ratings:
             self.assertEqual(self.data_source.is_valid_rating_input(rating), -1)
 
     def test_search_by_ratings_0_stars(self):
         """
-            test rating search output with edge case of 0 stars
+            test rating search output with case of 0 stars (typical/integrated for one feature)
         """
-        result = self.data_source.search_by_ratings(0)
+        result = self.data_source.search_by_ratings("0")
         intended_result = [self.bj_ic1, self.bj_ic2, self.hd_ic1, self.hd_ic2, self.talenti_ic1, \
                             self.talenti_ic2, self.breyers_ic1, self.breyers_ic2]
+        self.assertEqual(len(result), 8)
         self.assertEqual(intended_result, result)
 
     def test_search_by_ratings(self):
         """
-            test rating search output with 4.2 stars
+            test rating search output with 4.2 stars and 4.8 (typical/integrated)
         """
-        result = self.data_source.search_by_ratings(4.2)
-        intended_result = [self.hd_ic1, self.hd_ic2, self.talenti_ic1, self.talenti_ic2, self.breyers_ic2]
-        self.assertEqual(intended_result, result)
+        result1 = self.data_source.search_by_ratings("4.2")
+        intended_result1 = [self.hd_ic1, self.hd_ic2, self.talenti_ic1, self.talenti_ic2, self.breyers_ic2]
+        self.assertEqual(len(intended_result1), 5)
+        self.assertEqual(intended_result1, result1)
+
+        result2 = self.data_source.search_by_ratings("4.8")
+        intended_result2 = [self.hd_ic1, self.hd_ic2]
+        self.assertEqual(len(intended_result2), 2)
+        self.assertEqual(intended_result2, result2)
 
     def test_search_by_ratings_5_stars(self):
         """
-            test rating search output with edge case of 5 stars
+            test rating search output with edge case of 5 stars (typical/integrated)
         """
-        self.assertEqual(self.data_source.search_by_ratings(5), [])
+        self.assertEqual(self.data_source.search_by_ratings("5"), [])
 
     def test_search_by_ratings_invalid(self):
         """
-            test rating search output with edge cases of invalid rating inputs
+            test rating search output with edge cases of invalid rating inputs 
+            (edge/integrated)
         """
         # rating out of range
-        self.assertEqual(self.data_source.search_by_ratings(-1), [])
+        self.assertEqual(self.data_source.search_by_ratings("-1"), [])
         # rating out of range
-        self.assertEqual(self.data_source.search_by_ratings(6), [])
+        self.assertEqual(self.data_source.search_by_ratings("6"), [])
         # rating non-numeric
-        self.assertEqual(self.data_source.search_by_ratings('a'), [])
+        self.assertEqual(self.data_source.search_by_ratings("non-numeric string"), [])
 
     def test_is_invalid_sorting(self):
         """
