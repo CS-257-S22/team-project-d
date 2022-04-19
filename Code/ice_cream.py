@@ -14,7 +14,6 @@ from os import path, system
 from functools import reduce
 from operator import attrgetter
 
-
 class IceCream:
     def __init__(self, reviews_file_name, brand_key:str, name:str, description:str, 
                 avg_rating:float, rating_count:int, ingredients:str):

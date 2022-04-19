@@ -19,7 +19,6 @@
 import unittest
 import ice_cream as ic
 
-
 class TestBrands(unittest.TestCase):
     def setUp(self):
         # data_source used for the rest of tesing
