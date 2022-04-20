@@ -19,7 +19,7 @@
 import unittest
 import ice_cream as ic
 
-class TestBrands(unittest.TestCase):
+class TestIceCreamDataSource(unittest.TestCase):
     def setUp(self):
         # data_source used for the rest of tesing
         self.data_source = ic.DataSource("dummy_products.csv", "dummy_reviews.csv")
