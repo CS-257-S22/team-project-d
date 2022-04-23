@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Ice Creams</title>
+    </head>
+    <body>
+        <h1>{{ header1 }}</h1> 
+        <p>
+            <ul>
+                {% if ic_list != []: %}
+                    {% for ic in ic_list: %}
+                    <li>
+                        {{ ic.name }} | 
+                        {{ ic.brand_key }} | 
+                        {{ ic.avg_rating }} stars | 
+                        {{ ic.rating_count}} reviews 
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    No ice creams found - Something Went Wrong
+                {% endif %}
+            </ul>
+        </p>
+    </body>
+</html>
