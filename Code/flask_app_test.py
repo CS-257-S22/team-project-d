@@ -3,6 +3,9 @@ import unittest
 
 class TestFlaskApp(unittest.TestCase):
     def setUp(self):
+        '''
+            set up a (global) variable app using flask's build-in test_client()
+        '''
         self.app = app.test_client()
 
     def test_route_homepage(self):

@@ -21,9 +21,10 @@ def homepage():
     b_url = request.base_url
     return render_template('homepage.html', header1=header1, header2=header2, link=b_url)  
 
-def get_result(feature, input):
+def get_ice_creams(feature, input):
     '''
-        DESCRIPTION: Making a route for the home page
+        DESCRIPTION: a helper funcion that uses ice_cream.py's functions to get a 
+        list of ice creams
         PARAMETERS: 
                     feature - a string representing which feature a user wants to use
                     input - a string indicating the user's input
@@ -39,7 +40,7 @@ def get_result(feature, input):
     return result
 
 @app.route('/feature=<feature>/input=<input>')
-def display_result(feature, input):
+def display_ice_creams(feature, input):
     '''
         DESCRIPTION: Making a route for the three features supported by our app
         PARAMETERS: 
@@ -49,7 +50,7 @@ def display_result(feature, input):
         RETURN: output - a formatted string rendered from 'result.html' file in templates
     '''
     result = get_result(feature, input)
-    return render_template('result.html', header1='Ice Creams', ic_list=result)
+    return render_template('display_ice_creams.html', header1='Ice Creams', ic_list=result)
 
 @app.errorhandler(404)
 def page_not_found(e):
