@@ -49,7 +49,7 @@ def display_ice_creams(feature, input):
                     Both of these parameters are used for the route
         RETURN: output - a formatted string rendered from 'result.html' file in templates
     '''
-    result = get_result(feature, input)
+    result = get_ice_creams(feature, input)
     return render_template('display_ice_creams.html', header1='Ice Creams', ic_list=result)
 
 @app.errorhandler(404)
