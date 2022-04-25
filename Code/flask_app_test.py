@@ -8,6 +8,7 @@ class TestFlaskApp(unittest.TestCase):
         '''
         self.app = app.test_client()
 
+    # test if the home page is displayed as expected
     def test_route_homepage(self):
         '''
             test if the route for homepage works and displays the correct output 
@@ -15,7 +16,8 @@ class TestFlaskApp(unittest.TestCase):
         response = self.app.get('/', follow_redirects=True)
         self.assertIn(b'Instructions for navigating our website', response.data) 
 
-    def test_route_brand_search_valid_icecreams(self):
+    # the following two tests are for brand search for Ben and Jerry's (right/wrong)
+    def test_route_brand_search_right_icecreams_bj(self):
         '''
             test if the route for brand search works and displays the correct ice creams 
         '''
@@ -23,21 +25,108 @@ class TestFlaskApp(unittest.TestCase):
         # test if response outputs the correct number of ice creams
         count = response.data.count(b'reviews')
         self.assertEqual(count, 57)
-        # test for first icecream
+        # test for first bj icecream
         self.assertIn(b'Salted Caramel Core', response.data) 
-        # test for second icecream     
-        self.assertIn(b'Netflix', response.data)   
+        # test for second bj icecream     
+        self.assertIn(b'Netflix', response.data)
     
-    def test_route_brand_search_invalid_icecreams(self):
+    def test_route_brand_search_wrong_icecreams_bj(self):
         '''
-            test if the route for brand search works and does not displays the wrong icecreams
+            tests if the route for brand search works and does not displays the wrong ice creams
+            for Ben and Jerry's
         '''
         response = self.app.get('/feature=brand_search/input=bj', follow_redirects=True)
-        # test for first ice cream that should not be included
+        # test for first ice cream (from hd) that should not be included
         self.assertNotIn(b'White Chocolate Raspberry Truffle Ice Cream', response.data) 
-        # test for second ice cream that should not be included 
-        self.assertNotIn(b'Caramel Soft Dipped Ice Cream Bar', response.data)   
+        # test for second ice cream (from talenti) that should not be included 
+        self.assertNotIn(b'ALPHONSO MANGO SORBETTO', response.data) 
+        # test for third ice cream (from breyers) that should not be included 
+        self.assertNotIn(b'Natural Vanilla', response.data) 
 
+    # the following two tests are for brand search for Haagen Dazs (right/wrong)
+    def test_route_brand_search_right_icecreams_hd(self):
+        '''
+            tests if the route for brand search works and displays the correct ice creams
+            for Haagen Dazs
+        '''
+        response = self.app.get('/feature=brand_search/input=hd', follow_redirects=True)
+        # test if response outputs the correct number of ice creams
+        count = response.data.count(b'reviews')
+        self.assertEqual(count, 70)
+        # test for first hd icecream
+        self.assertIn(b'White Chocolate Raspberry Truffle Ice Cream', response.data) 
+        # test for second hd icecream     
+        self.assertIn(b'Banana Peanut Butter Chip Ice Cream', response.data)
+
+    def test_route_brand_search_wrong_icecreams_hd(self):
+        '''
+            tests if the route for brand search works and does not displays the wrong ice creams
+            for Haagen Dazs
+        '''
+        response = self.app.get('/feature=brand_search/input=hd', follow_redirects=True)
+        # test for first ice cream (from bj) that should not be included
+        self.assertNotIn(b'Salted Caramel Core', response.data) 
+        # test for first ice cream (from talenti) that should not be included 
+        self.assertNotIn(b'ALPHONSO MANGO SORBETTO', response.data) 
+        # test for first ice cream (from breyers) that should not be included
+        self.assertNotIn(b'Natural Vanilla', response.data)
+
+    # the following two tests are for brand search for Talenti (right/wrong)
+    def test_route_brand_search_right_icecreams_talenti(self):
+        '''
+            test if the route for brand search works and displays the correct ice creams 
+        '''
+        response = self.app.get('/feature=brand_search/input=talenti', follow_redirects=True)
+        # test if response outputs the correct number of ice creams
+        count = response.data.count(b'reviews')
+        self.assertEqual(count, 45)
+        # test for first Talenti icecream
+        self.assertIn(b'ALPHONSO MANGO SORBETTO', response.data) 
+        # test for second Talenti icecream
+        self.assertIn(b'BANANA CARAMEL CRUNCH', response.data)
+
+    def test_route_brand_search_wrong_icecreams_talenti(self):
+        '''
+            tests if the route for brand search works and does not displays the wrong ice creams
+            for Talenti
+        '''
+        response = self.app.get('/feature=brand_search/input=talenti', follow_redirects=True)
+        # test for first Ben and Jerry's ice cream that should not be included
+        self.assertNotIn(b'Salted Caramel Core', response.data) 
+        # test for first Haagen Dazs ice cream that should not be included
+        self.assertNotIn(b'White Chocolate Raspberry Truffle Ice Cream', response.data)
+        # test for first Breyers ice cream that should not be included
+        self.assertNotIn(b'Natural Vanilla', response.data)
+
+    # the following two tests are for brand search for Breyers (right/wrong)
+    def test_route_brand_search_right_icecreams_breyers(self):
+        '''
+            test if the route for brand search works and displays the correct ice creams
+            for Breyers
+        '''
+        response = self.app.get('/feature=brand_search/input=breyers', follow_redirects=True)
+        # test if response outputs the correct number of ice creams
+        count = response.data.count(b'reviews')
+        self.assertEqual(count, 69)
+        # test for first Breyers icecream
+        self.assertIn(b'Natural Vanilla', response.data) 
+        # test for second Breyers icecream
+        self.assertIn(b'Homemade Vanilla', response.data)   
+
+    def test_route_brand_search_wrong_icecreams_breyers(self):
+        '''
+            tests if the route for brand search works and does not displays the wrong ice creams
+            for Breyer's
+        '''
+        response = self.app.get('/feature=brand_search/input=breyers', follow_redirects=True)
+        # test for first Ben and Jerry's ice cream that should not be included
+        self.assertNotIn(b'Salted Caramel Core', response.data) 
+        # test for first Haagen Dazs ice cream that should not be included
+        self.assertNotIn(b'White Chocolate Raspberry Truffle Ice Cream', response.data)
+        # test for first Talenti ice cream that should not be included
+        self.assertNotIn(b'ALPHONSO MANGO SORBETTO', response.data) 
+
+    # the following two tests are for rating search
     def test_route_rating_search_valid_icecreams(self):
         '''
             test if the route for rating search works and displays the correct ice creams 
@@ -61,6 +150,7 @@ class TestFlaskApp(unittest.TestCase):
         # test for second ice cream that should not be included 
         self.assertNotIn(b'Homemade Vanilla', response.data) 
     
+    # the following two tests are for rating sort
     def test_route_rating_sort_valid_icecreams(self):
         '''
             test if the route for rating sort works and displays the correct icecreams
@@ -88,16 +178,33 @@ class TestFlaskApp(unittest.TestCase):
         # test for third ice cream that should not be included 
         self.assertNotIn(b'Peppermint Bark Ice Cream Bar', response.data) 
 
+    # tests for invalid feature/input/link
+    def test_route_invalid_feature(self):
+        '''
+            test if the app responses to some invalid feature
+        '''
+        response1 = self.app.get('/feature=stupid_feature/input=bj', follow_redirects=True)
+        self.assertIn(b'Something Went Wrong', response1.data) 
+    
     def test_route_invalid_input(self):
         '''
-            test if the app responses to some invalid links by displaying the error and suggestions
+            test if the app responses to some invalid input
         '''
-        response1 = self.app.get('/feature=nonexisting_command/input=bj', follow_redirects=True)
+        response1 = self.app.get('/feature=brand_search/input=wrong_rating', follow_redirects=True)
         self.assertIn(b'Something Went Wrong', response1.data) 
-        response2 = self.app.get('/feature=brand_search/input=wrong_brand', follow_redirects=True)
+        response2 = self.app.get('/feature=rating_search/input=wrong_rating', follow_redirects=True)
         self.assertIn(b'Something Went Wrong', response2.data)
-        response3 = self.app.get('/r/o/n/d/o/m', follow_redirects=True)
-        self.assertIn(b'Page Not Found', response3.data)
+        response3 = self.app.get('/feature=rating_sort/input=wrong_input', follow_redirects=True)
+        self.assertIn(b'Something Went Wrong', response3.data)
+
+    def test_route_error_404(self):
+        '''
+            test the error_handler for ERROR 404 page (any invalid links should go here)
+        '''
+        response1 = self.app.get('/r/a/n/d/o/m', follow_redirects=True)
+        self.assertIn(b'Page Not Found', response1.data)
+        response2 = self.app.get('/invalid/link/is/here!', follow_redirects=True)
+        self.assertIn(b'Page Not Found', response2.data)
 
 if __name__ == "__main__":
     unittest.main()
