@@ -1,3 +1,16 @@
+'''
+    @assignment: Flask App Team Assignment
+    @author: Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, Charlie Ney
+    @course CS257, Softare Design
+    @usage: To run this program please use:
+
+                python3 flask_app.py
+
+            while having html templates and ice_cream.py in the same directpry 
+            as this file. It might take a few seconds to run as we have not implmented 
+            our database. 
+'''
+
 from flask import Flask, render_template, request
 import ice_cream as ic
 from os import system

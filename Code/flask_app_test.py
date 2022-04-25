@@ -1,3 +1,16 @@
+'''
+    @assignment: Flask App Team Assignment
+    @author: Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, Charlie Ney
+    @course CS257, Softare Design
+    @usage: To run this program please use:
+
+                python3 flask_app_test.py
+
+            while having html templates, ice_cream.py, and flask_app.py in the same directpry 
+            as this file. It might take a few seconds to run as we have not implmented 
+            our database. 
+'''
+
 from flask_app import app
 import unittest
 
