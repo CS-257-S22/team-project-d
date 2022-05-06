@@ -72,7 +72,8 @@ def page_not_found(e):
     '''
     error_number = 404
     message = 'Page Not Found'
-    return render_template('error.html', error_number=error_number, message=message)
+    link = request.root_url
+    return render_template('error.html', error_number=error_number, message=message, link=link)
 
 @app.errorhandler(500)
 def python_bug(e):
