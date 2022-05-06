@@ -1,0 +1,100 @@
+body {
+    background-color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+    text-align: center;
+    color: white;
+    font-size: 3.5vw;
+    margin-left: 1vw;
+    margin-top: 1vw;
+}
+
+.a1 {
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1vw;
+    font-size: 38px;
+    color: white;
+}
+
+.ic_box {
+    position: relative;
+    float: left;
+    background-color: white;
+    border-radius: 25px;
+    border: 1vw solid #52b7a3;
+    margin:3vw;
+    margin-bottom: 1vw;
+    padding: 20px;
+    width: 220px;
+    height: 240px;
+    text-align: center;
+    display: none;
+}
+
+.image {
+    width: 40%;
+}
+
+.star {
+    font-size: 18px;
+    color: rgb(255, 187, 0);
+    line-height: 140%;
+    margin-bottom: -5px;
+}
+
+h2 {
+    font-size: 15px;
+}
+
+.products_btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #fbb291;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    position: absolute;
+    bottom: 25px;
+    right: 80px;
+}
+
+.products_btn:hover {
+    background-color: #ca5924;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.next {
+    width: 70px;
+    height: auto;
+    border-radius: 10px;
+    padding: 1vw;
+}
+
+.prev {
+    width: 70px;
+    height: auto;
+    border-radius: 10px;
+    padding: 1vw;
+    display: none;
+}
+
+.next:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.prev:hover {
+    background-color: grey;
+    cursor: pointer;
+}
