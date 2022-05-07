@@ -238,10 +238,24 @@ class DataSource:
             @return: [ic] - the specified ice cream object in a list, returns [] if ice cream
                 with the name does not exist (improvement needed)
         """
-        result = []
         for brand in self.ice_cream_data_source:
             for ic in brand:
                 if ic.name == name:
+                    return [ic]
+        
+        return []
+
+    def search_by_keyword(self, keyword):
+        """
+            @description: Returns a list of ice creams whose names contain the keyword 
+                        (lower/upper both)
+            @params: keyword - a string indicating the keyword on which the search is based
+            @return: result - a list of all the matching ice creams 
+        """
+        result = []
+        for brand in self.ice_cream_data_source:
+            for ic in brand:
+                if keyword.lower() in ic.name.lower():
                     result.append(ic)
         
         return result

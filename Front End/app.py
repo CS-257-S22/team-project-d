@@ -1,8 +1,9 @@
 '''
-    (1) Give ice creams containing the key word
+    (1) Give ice creams containing the key word (Done)
     (2) Change colors
     (3) Navigation bar - every page
         (3a) "Quest for the best ice cream" will become the home button 
+    (4) Fix next button (Done)
     
     @assignment: Front End Team D Assignment
     @author: Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, Chrlie Ney
@@ -54,7 +55,7 @@ def search_result_page(feature, input):
     '''
         DESCRIPTION: Creates a route to the ice creams search result page that displays
                      a list of ice creams resulted from a user's search. This function is used 
-                     when user uses brand_search and rating_search to get ice creams
+                     when user uses brand_search and rating_search to get ice creams.
         PARAMETERS: feature - a string indicating search feature (either brand_search or rating_search)
                     input - a string indicating user's input keyword used for their search
         RETURNS: page rendered by the html file 'result.html' 
@@ -81,23 +82,23 @@ def search_result_page(feature, input):
     return render_template('result.html', header1=header1, ic_list=ic_list)
 
 
-@app.route('/search_bar_ic')
-def ice_cream_page_by_search_bar():
+@app.route('/feature=keyword_search')
+def keyword_search_result_page():
     '''
-        DESCRIPTION: Creates a route to the individual ice cream page. This route will be 
-                    used when a user uses the search bar to search some ice cream. 
+        DESCRIPTION: Creates a route to the ice creams search result page that displays
+                     a list of ice creams resulted from a user's search. This function is used 
+                     when user uses the search bar to do keyword_search.
         PARAMETERS: NONE
-        RETURNS: page rendered by the html file 'ice_cream.html'
+        RETURNS: page rendered by the html file 'result.html'
     '''
-    ic_list = ic_data_source.search_by_name(request.args["ic_name"])
+    input = request.args["keyword"]
+    ic_list = ic_data_source.search_by_keyword(input)
     if ic_list == []:
         return render_template('error.html')
-    ic = ic_list[0]
-    image = '..\static\photos\\' + ic.brand_key + '.png'
-    return render_template('ice_cream.html', image=image, ic=ic)
+    return render_template('result.html', header1='Keyword: '+input, ic_list=ic_list)
     
 @app.route('/ic_name=<name>')
-def ice_cream_page_by_direct_url(name):
+def ice_cream_page(name):
     '''
         DESCRIPTION: Creates another route to the individual ice cream page. This route will be 
                     used when a user clicks/types the link directly rather than using the search bar. 
