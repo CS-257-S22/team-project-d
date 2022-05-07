@@ -238,12 +238,13 @@ class DataSource:
             @return: [ic] - the specified ice cream object in a list, returns [] if ice cream
                 with the name does not exist (improvement needed)
         """
+        result = []
         for brand in self.ice_cream_data_source:
             for ic in brand:
                 if ic.name == name:
-                    return [ic]
+                    result.append(ic)
         
-        return []
+        return result
 
     def random_ice_cream(self):
         """

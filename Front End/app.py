@@ -1,4 +1,9 @@
 '''
+    (1) Give ice creams containing the key word
+    (2) Change colors
+    (3) Navigation bar - every page
+        (3a) "Quest for the best ice cream" will become the home button 
+    
     @assignment: Front End Team D Assignment
     @author: Daisuke Yamada, Shoko Ishikawa, Jake Jasmer, Chrlie Ney
     @course CS257, Softare Design
