@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #a8d7ea;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -16,9 +16,9 @@ header {
 }
 
 .layer {
-    background-color: #f2c8b5;
+    background-color: white;
     border-radius: 3vw;
-    border: 1vw solid #52b7a3;
+    border: 1vw solid #FFB1B8;
     margin: 8vw;
     margin-top: 3vw;
     margin-bottom: 5vw;

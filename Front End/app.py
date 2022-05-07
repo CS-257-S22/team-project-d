@@ -1,6 +1,6 @@
 '''
-    (1) Give ice creams containing the key word (Done)
-    (2) Change colors
+    ([1) Give ice creams containing the key word (Done)
+   cc (2) Change colors
     (3) Navigation bar - every page
         (3a) "Quest for the best ice cream" will become the home button 
     (4) Fix next button (Done)
