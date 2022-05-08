@@ -1,0 +1,60 @@
+<!-- This html extends the content of base_nav html, so the headers start with h2 as nav_base.html
+already contains h1, h3, and h4 -->
+{% extends  "base_nav.html" %}
+
+{% block title %}
+        ICE CREAM PAGE
+    {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="../static/css_folder/ice_cream.css" />
+{% endblock %}
+
+{% block content %}
+<div class="layer">
+    <div class="first_block">
+        <img src="{{ image }}" alt="the image of {{ ic.name }} ice cream">
+        <div class="text_block">
+            <h2>{{ ic.name }}</h2>
+            <p class="description">{{ ic.description }}</p>
+        </div>
+    </div>
+    <br> <br> 
+    <div class="text_block">
+        <h5>Ingredients:</h5>
+        <p class="ingredients">{{ ic.ingredients }}</p>
+    </div>
+    <br> <br> 
+    <div class="text_block">
+        <h5>Rating&Review({{ ic.rating_count }}):</h5>
+        <br>
+        <p class="overall_rating">
+            Overall:
+            {% for i in range(ic.avg_rating_int): %}
+                <i class="fas fa-star"></i>
+            {% endfor %}
+            {% if ic.avg_rating_decimal >= 0.7 %}
+                <i class="fas fa-star"></i>
+            {% elif ic.avg_rating_decimal >= 0.3 %}
+                <i class="fas fa-star-half-alt"></i>
+            {% endif %}
+            {{ ic.avg_rating }}   
+        </p>
+        <div class="list">
+            {% for r in ic.reviews: %}
+                <div class="review">
+                    <p class="date">Date: {{ r.date }}</p>
+                    <p class="rating">Rating: {{ r.rating }}</p>
+                    <p class="comment">{{ r.comment }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="btns">
+            <button class="btn" id="btn1">Show More...</button>
+            <button class="btn" id="btn2">Show Less...</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js_folder/load_more.js"></script>
+{% endblock %}
