@@ -1,0 +1,50 @@
+{% extends  "base_nav.html" %}
+
+{% block title %}
+        RESULT PAGE
+    {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="../static/css_folder/result.css" />
+{% endblock %}
+
+{% block content %}
+<h2>{{ header1 }}</h2>
+<div class="btns">
+    <button class="prev">Prev</button>
+    <button class="next">Next</button>
+</div>
+<div class="wrap">
+    {% if ic_list == [] %}
+    <p class="no_ics">No ice creams found for your search. Please try a different keyword or number!</p>
+    {% else %}
+    {% for ic in ic_list %}
+        <div class="ic_box">
+            <img class="image" alt='An image of {{ ic.name }} ice cream' src="../static/photos/{{ ic.brand_key }}.png">
+            <br>
+            <div class="star">
+                {% for i in range(ic.avg_rating_int): %}
+                    <i class="fas fa-star"></i>
+                {% endfor %}
+                {% if ic.avg_rating_decimal >= 0.7 %}
+                    <i class="fas fa-star"></i>
+                {% elif ic.avg_rating_decimal >= 0.3 %}
+                    <i class="fas fa-star-half-alt"></i>
+                {% endif %}
+                {{  ic.avg_rating }}
+            </div>
+            <h5> 
+                <div class="name">
+                    {{ ic.name }}
+                </div>
+            </h5>
+            <a class="a1" href="/ic_name={{ ic.name }}">
+                <button class="products_btn">See Product &#62;</button>
+            </a>
+        </div>
+    {% endfor %}
+    {% endif %}
+</div> 
+<script type="text/javascript" src="../static/js_folder/next_page.js"></script>
+{% endblock %}
