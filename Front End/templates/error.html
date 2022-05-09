@@ -1,0 +1,31 @@
+<!-- 
+    This html for our 404 error page extends the base html "base_nav.html". This html 
+    does not have h1, h3, and h4 because the base html has them already. 
+    So, as a page, this html has all the headers used correctly. 
+-->
+{% extends  "base_nav.html" %}
+
+{% block title %}
+    HOME PAGE
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="../static/css_folder/error.css" />
+{% endblock %}
+
+{% block content %}
+<p class="error">
+    4
+    <img src="../static/photos/error_ice_cream.png" alt="An ice cream image for zero in 404">
+    4
+</p>
+<p class="message"> 
+    The page you are looking for doesn't exist. This is likely due to unrecognized input.
+    Please go back or use the 
+    <a href="/">
+    base URL 
+    </a>
+    to go to the homepage. 
+</p>
+{% endblock %}
