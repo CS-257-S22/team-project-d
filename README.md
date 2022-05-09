@@ -4,7 +4,7 @@ team-project-d created by GitHub Classroom
 Repo for Team D in CS 257. 
 
 For grader for front end assignment:
-All the necessary files are in the "Fron End" folder. 
+All the necessary files are in the "Front End" folder. 
 
 1) ice_cream.py is our production code, and ice_cream_test.py is our test suite for that. They need 
 the "Data" folder in the directory that is one-level lower as it is now, so the easiest is to pull 
