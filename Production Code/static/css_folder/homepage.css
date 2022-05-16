@@ -1,0 +1,68 @@
+body {
+    background-color: #a8d7ea;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+}
+
+.brand_boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.brand_box {
+    background-color: white;
+    margin:3.5vw;
+    margin-bottom: 3vw;
+    padding: 2vw;
+    border-radius: 25px;
+    border: 1vw solid #FFB1B8;
+    width: 35vw;
+    height: auto;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 6vw;
+}
+  
+h2 {
+    margin-top: 0;
+    font-size: 30px;
+}
+  
+.bj {
+    margin-top: -6vw;
+    width: 20vw;
+}
+  
+.hd {
+    margin-top: -1.7vw;
+    width: 16vw;
+}
+  
+.talenti {
+    margin-top: -2.5vw;
+    width: 15vw;
+}
+
+.breyers {
+    margin-top: -5vw;
+    width: 22vw
+}
+
+.a1 {
+    text-decoration: none;
+    color: black;
+}
+  
+.brand_products {
+    height: 5vw;
+    border-radius: 45px;
+    font-size: 15px;
+    background-color: #FFB1B8;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+  
+.brand_products:hover {
+    background-color: #e9858d;
+}
+ 

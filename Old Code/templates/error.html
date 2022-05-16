@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>ERROR {{ error_number }}</title>
+    </head>
+    <body>
+        <h1>ERROR {{ error_number }}: {{ message }}</h1>
+        <p> The page you are looking for doesn't exist. This is likely due to unrecognized input.
+        </p>
+        <br>
+        <p>
+            Please follow these instructions:
+            <b> <pre> {{ link }}feature=[feature]/input=[input] </b> </pre> <br>
+            - Replace [feature] with either (a)"brand_search", (b)"rating_search", or (c)"rating_sort", <br>
+            - Replace [input] with either brand name (for brand search), rating (for rating search), 
+            or top number (for rating sort), depending on which search type you select: <br> <br>
+            a) Brand name should be either "bj" (Ben and Jerry's) "hd" (Haagen Dazs), "talenti", 
+            or "breyers" (for brand_search - which gives a list of ice creams from the specified brand) <br>
+            b) Rating should be a number between 0 and 5 inclusive (for rating_search - which gives a 
+            list of ice creams with the rating or higher)<br>
+            c) Top number should be an integer between 0 and 241 inclusive (for rating_sort - which
+            gives a list of top x ice creams in rating) <br>
+        </p>
+    </body>
+</html>
