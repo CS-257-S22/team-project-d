@@ -3,6 +3,15 @@ team-project-d created by GitHub Classroom
 
 Repo for Team D in CS 257. 
 
+Copy Command for "products.csv": 
+```
+\copy products FROM 'products.csv' DELIMITER ',' CSV
+```
+Copy Command for "reviews.csv": 
+```
+\copy reviews FROM 'reviews.csv' DELIMITER ',' CSV
+```
+
 For grader for front end assignment:
 All the necessary files are in the "Front End" folder. 
 
