@@ -8,7 +8,7 @@ All the necessary files are in the "Production Code" folder. All the files
 in this "Production Code" folder need to stay together to be run, so please pull
 them together. The followings are the specific details about the files:
 
-(1) "app.py" contains our flask app.__
+(1) "app.py" contains our flask app. <br>
 (2) "datasource.py" contains our python code that makes connection to our team database containing
 tables and execute the relevant queries, which are used in "app.py".
 (3) "app_test.py" and "datasource_test.py" contain a test suite for "app.py" and "datasource_test.py", respectively.
