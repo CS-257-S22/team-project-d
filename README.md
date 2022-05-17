@@ -3,6 +3,21 @@ team-project-d created by GitHub Classroom
 
 Repo for Team D in CS 257. 
 
+For grader of Team Back End Deliverable:
+All the necessary files are in the "Production Code" folder. All the files
+in this "Production Code" folder need to stay together to be run, so please pull
+them together. The followings are the specific details about the files:
+
+(1) "app.py" contains our flask app. 
+(2) "datasource.py" contains our python code that makes connection to our team database containing
+tables and execute the relevant queries, which are used in "app.py".
+(3) "app_test.py" and "datasource_test.py" contain a test suite for "app.py" and "datasource_test.py", respectively.
+(4) The "static" folder contains our CSS/Javascript files, and the "templates" folder contains our HTML files.
+(5) "createtable.sql" creates two tables based off of the two datasets "products.csv" and "reviews.csv".
+
+You might not use them, but the below is the instructions for how to create and copy tables on a databse.
+(1) Create tables by runing "createtable.sql" 
+(2) Use the following commands to copy the contents into the two tables (while having the datasets in the same directory)
 Copy Command for "products.csv": 
 ```
 \copy products FROM 'products.csv' DELIMITER ',' CSV
@@ -11,22 +26,6 @@ Copy Command for "reviews.csv":
 ```
 \copy reviews FROM 'reviews.csv' DELIMITER ',' CSV
 ```
-
-For grader for front end assignment:
-All the necessary files are in the "Front End" folder. 
-
-1) ice_cream.py is our production code, and ice_cream_test.py is our test suite for that. They need 
-the "Data" folder in the directory that is one-level lower as it is now, so the easiest is to pull 
-both the "Front End" and "Data" folders.
-2) app.py is our app, and app_test.py is our test suite for that. They need the "templates" folder, 
-the "static" folder, and ice_cream.py to be in the same directory as they are. Also, they need the "Data"
-folder in the directory that is one-level lower as it is now, so the easiest way is to pull "Front End"
-and "Data" together and run. 
-
-For grader for revised flask app assignment:
-All the necessary files are in the "Code" folder. ice_cream.py contains the main code to run and 
-ice_cream_test.py is our test suite. flask_app.py contains our flask app, 
-flask_app_test.py contains a test suite for flask_app.py, and the templates folder contains html files. ice_cream.py, flask_app.py, flask_app_test.py and templates need to stay in the same directory to be run. 
 
 Daisuke Yamada, Jake Jasmer, Shoko Ishikawa, Charlie Ney
 
