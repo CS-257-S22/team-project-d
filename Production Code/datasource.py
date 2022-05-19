@@ -12,6 +12,7 @@ import random
 class IceCream:
     '''
         This class creates an IceCream object that represnets an individual ice cream. 
+        (Just for the readability of our code)
     '''
     def __init__(self, brand_key:str, name:str, description:str, rating:float,\
                 rating_count:int, ingredients:str, reviews):
@@ -27,7 +28,7 @@ class IceCream:
 class Review:
     '''
         This class creates a Review object that represnets an individual review
-        for some ice cream. 
+        for some ice cream. (Just for the readability of our code)
     '''
     def __init__(self, date:str, rating:int, title:str, comment:str):
         self.date = date
