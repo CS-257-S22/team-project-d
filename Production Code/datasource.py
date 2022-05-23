@@ -176,9 +176,8 @@ class DataSource:
             PARAMS: NONE
             RETURNS: icecream - a randomly slected icecream IceCReam() object
         '''
-        random_num = random.randint(0, 240)
-        query = "SELECT * FROM products LIMIT 1 OFFSET %s"
-        query_result = self.execute_query(query, random_num)
+        query = "SELECT * FROM products ORDER BY RANDOM() LIMIT 1"
+        query_result = self.execute_query(query)
         return self.change_to_IceCream(query_result)[0]
 
     def get_reviews(self, brand_key):
