@@ -123,4 +123,4 @@ def python_bug(e):
     return '500 Error: Internal Issue'
 
 if __name__ == '__main__':
-    app.run(host="localhost", port="5131", debug="true")
+    app.run(host="0.0.0.0", port="5131")
