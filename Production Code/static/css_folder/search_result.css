@@ -101,3 +101,8 @@ h5 {
     background-color: grey;
     cursor: pointer;
 }
+
+.wrap {
+    /* pixel values are based on a standard web page width of 1024 pixels */
+    margin-left: 142px;
+}
